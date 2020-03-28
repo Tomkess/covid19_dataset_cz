@@ -10,11 +10,15 @@ http_website <-
 # ----- Get Table - Material Data -----
 material_table <- html_nodes(http_website, "table")
 material_data <- 
-  html_table(material_table[4], fill = TRUE)[[1]] %>% 
+  html_table(material_table[7], fill = TRUE)[[1]] %>% 
   as.data.frame()
 
 total_sex_data <- 
-  html_table(material_table[3], fill = TRUE)[[1]] %>% 
+  html_table(material_table[5], fill = TRUE)[[1]] %>% 
+  as.data.frame()
+
+total_hospitalization_data <- 
+  html_table(material_table[6], fill = TRUE)[[1]] %>% 
   as.data.frame()
 
 # ----- Foreign Countries Data -----
@@ -117,3 +121,5 @@ write.table(x = total_sex_data %>% as.data.frame(),
             file = "sex_age_cz.csv", append = F, row.names = F)
 write.table(x = material_data %>% as.data.frame(), 
             file = "material_data_cz.csv", append = F, row.names = F)
+write.table(x = total_hospitalization_data %>% as.data.frame(), 
+            file = "hospitalization_data_cz.csv", append = F, row.names = F)
